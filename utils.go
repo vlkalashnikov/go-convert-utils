@@ -83,3 +83,8 @@ func DS(value string, defaultValue ...string) string {
 	}
 	return value
 }
+
+//B2P returns pointer boolean
+func B2P(b bool) *bool {
+	return &b
+}
