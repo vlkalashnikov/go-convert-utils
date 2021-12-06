@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"encoding/binary"
 	"fmt"
+	"math"
 	"reflect"
 	"strconv"
 	"time"
@@ -87,4 +89,17 @@ func DS(value string, defaultValue ...string) string {
 //B2P returns pointer boolean
 func B2P(b bool) *bool {
 	return &b
+}
+
+func BF64(bytes []byte) float64 {
+	bits := binary.LittleEndian.Uint64(bytes)
+	float := math.Float64frombits(bits)
+	return float
+}
+
+func F64B(float float64) []byte {
+	bits := math.Float64bits(float)
+	bytes := make([]byte, 8)
+	binary.LittleEndian.PutUint64(bytes, bits)
+	return bytes
 }
