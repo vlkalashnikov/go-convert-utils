@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"bytes"
 	"encoding/binary"
+	"encoding/gob"
 	"fmt"
 	"math"
 	"reflect"
@@ -91,15 +93,25 @@ func B2P(b bool) *bool {
 	return &b
 }
 
-func BF64(bytes []byte) float64 {
+func B2F64(bytes []byte) float64 {
 	bits := binary.LittleEndian.Uint64(bytes)
 	float := math.Float64frombits(bits)
 	return float
 }
 
-func F64B(float float64) []byte {
+func F642B(float float64) []byte {
 	bits := math.Float64bits(float)
 	bytes := make([]byte, 8)
 	binary.LittleEndian.PutUint64(bytes, bits)
 	return bytes
+}
+
+func I2B(key interface{}) ([]byte, error) {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	err := enc.Encode(key)
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }
