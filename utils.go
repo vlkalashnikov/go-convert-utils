@@ -115,3 +115,20 @@ func I2B(key interface{}) ([]byte, error) {
 	}
 	return buf.Bytes(), nil
 }
+
+func P2S(s *string) string {
+	if s != nil {
+		return *s
+	}
+
+	return ""
+}
+
+func P2T(t *time.Time) time.Time {
+	var tt time.Time
+	if t != nil {
+		return *t
+	}
+
+	return tt
+}
