@@ -33,6 +33,16 @@ func IsWeekend(day time.Time) bool {
 	return weekday == "Sunday" || weekday == "Saturday"
 }
 
+func PreviousMonth() time.Time {
+	currentTime := time.Now()
+	return currentTime.AddDate(0, -1, 0)
+}
+
+func PrevMonthFirstLast() (time.Time, time.Time) {
+	m := PreviousMonth()
+	return BeginningOfMonth(m), EndOfMonth(m)
+}
+
 func BeginningOfMonth(d time.Time) time.Time {
 	return d.AddDate(0, 0, -d.Day()+1)
 }
