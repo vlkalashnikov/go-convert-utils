@@ -80,17 +80,17 @@ func S2B(s string) (b []byte) {
 	return
 }
 
-// DS returns the value or a default value if it is set
-func DS(value string, defaultValue ...string) string {
-	if len(value) == 0 && len(defaultValue) > 0 {
-		return defaultValue[0]
-	}
-	return value
-}
-
 //B2P returns pointer boolean
 func B2P(b bool) *bool {
 	return &b
+}
+
+func P2B(p *bool) bool {
+	if p != nil {
+		return *p
+	}
+
+	return false
 }
 
 func B2F64(bytes []byte) float64 {
@@ -131,4 +131,33 @@ func P2T(t *time.Time) time.Time {
 	}
 
 	return tt
+}
+
+func P2I(p *int) int {
+	if p != nil {
+		return *p
+	}
+
+	return 0
+}
+
+func DefaultString(value string, defaultValue ...string) string {
+	if len(value) == 0 && len(defaultValue) > 0 {
+		return defaultValue[0]
+	}
+	return value
+}
+
+func DefaultInt(value int, defaultValue ...int) int {
+	if value == 0 && len(defaultValue) > 0 {
+		return defaultValue[0]
+	}
+	return value
+}
+
+func DefaultInt64(value int64, defaultValue ...int64) int64 {
+	if value == 0 && len(defaultValue) > 0 {
+		return defaultValue[0]
+	}
+	return value
 }

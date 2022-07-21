@@ -71,3 +71,19 @@ func GetDay(d time.Time) (day int) {
 	_, _, day = d.Date()
 	return
 }
+
+func GetCurrentYearMonthDay() (year, month, day int) {
+	return GetYearMonthDay(time.Now())
+}
+
+func GetCurrentYear() int {
+	return GetYear(time.Now())
+}
+
+func GetCurrentDay() int {
+	return GetDay(time.Now())
+}
+
+func GetCurrentMonth() int {
+	return GetMonth(time.Now())
+}
