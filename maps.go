@@ -13,6 +13,18 @@ func GetIntValue(mp map[string]interface{}, name string) int {
 	if val, ok := x.(float64); ok {
 		return int(val)
 	}
+
+	if val, ok := x.(float32); ok {
+		return int(val)
+	}
+
+	if val, ok := x.(int32); ok {
+		return int(val)
+	}
+
+	if val, ok := x.(int64); ok {
+		return int(val)
+	}
 	return 0
 }
 
