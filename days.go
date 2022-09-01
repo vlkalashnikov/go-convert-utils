@@ -1,6 +1,9 @@
 package utils
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 func DaySlice(start, end time.Time) (DaySlice []time.Time) {
 	currDate := start
@@ -86,4 +89,11 @@ func GetCurrentDay() int {
 
 func GetCurrentMonth() int {
 	return GetMonth(time.Now())
+}
+
+func Month2Str(mnth int) string {
+	if mnth < 10 {
+		return "0" + strconv.Itoa(mnth)
+	}
+	return strconv.Itoa(mnth)
 }
