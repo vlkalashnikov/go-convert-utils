@@ -142,3 +142,7 @@ func Diff(a, b time.Time) (year, month, day, hour, min, sec int) {
 
 	return
 }
+
+func DateBetween2Dates(date, start, end time.Time) bool {
+	return (start.Before(date) || start.Equal(date)) && (end.After(date) || end.Equal(date))
+}
