@@ -41,8 +41,18 @@ func PreviousMonth() time.Time {
 	return currentTime.AddDate(0, -1, 0)
 }
 
+func NextMonth() time.Time {
+	currentTime := time.Now()
+	return currentTime.AddDate(0, 1, 0)
+}
+
 func PrevMonthFirstLast() (time.Time, time.Time) {
 	m := PreviousMonth()
+	return BeginningOfMonth(m), EndOfMonth(m)
+}
+
+func NextMonthFirstLast() (time.Time, time.Time) {
+	m := NextMonth()
 	return BeginningOfMonth(m), EndOfMonth(m)
 }
 
