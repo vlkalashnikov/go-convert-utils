@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"encoding/gob"
+	"encoding/xml"
 	"fmt"
 	"math"
 	"reflect"
@@ -139,6 +140,11 @@ func P2I(p *int) int {
 	}
 
 	return 0
+}
+
+func X2S(in interface{}) string {
+	out, _ := xml.MarshalIndent(in, " ", "  ")
+	return string(out)
 }
 
 func DefaultString(value string, defaultValue ...string) string {
