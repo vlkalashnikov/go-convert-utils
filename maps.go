@@ -25,6 +25,11 @@ func GetIntValue(mp map[string]interface{}, name string) int {
 	if val, ok := x.(int64); ok {
 		return int(val)
 	}
+
+	if val, ok := x.(int); ok {
+		return val
+	}
+
 	return 0
 }
 
