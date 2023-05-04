@@ -81,7 +81,7 @@ func S2B(s string) (b []byte) {
 	return
 }
 
-//B2P returns pointer boolean
+// B2P returns pointer boolean
 func B2P(b bool) *bool {
 	return &b
 }
@@ -166,4 +166,17 @@ func DefaultInt64(value int64, defaultValue ...int64) int64 {
 		return defaultValue[0]
 	}
 	return value
+}
+
+func RmElemByIdx[T any](slice []T, index int) []T {
+	return append(slice[:index], slice[index+1:]...)
+}
+
+func Filter[T any](ss []T, fn func(T) bool) (ret []T) {
+	for _, s := range ss {
+		if fn(s) {
+			ret = append(ret, s)
+		}
+	}
+	return
 }
