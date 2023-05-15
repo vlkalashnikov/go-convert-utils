@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	"runtime"
 	"strconv"
 	"time"
 	"unsafe"
@@ -179,4 +180,8 @@ func Filter[T any](ss []T, fn func(T) bool) (ret []T) {
 		}
 	}
 	return
+}
+
+func FnName(i interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
