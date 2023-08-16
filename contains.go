@@ -5,18 +5,9 @@ import (
 	"strings"
 )
 
-func SInArr(values []string, value string) bool {
-	for _, elem := range values {
-		if elem == value {
-			return true
-		}
-	}
-	return false
-}
-
-func IInArr(ids []int, id int) bool {
-	for _, d := range ids {
-		if id == d {
+func Contains[T comparable](s []T, e T) bool {
+	for _, a := range s {
+		if a == e {
 			return true
 		}
 	}

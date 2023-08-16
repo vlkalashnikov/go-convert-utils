@@ -8,7 +8,7 @@ import (
 func DaySlice(start, end time.Time) (DaySlice []time.Time) {
 	currDate := start
 
-	for end.After(currDate) == true {
+	for end.After(currDate) {
 		DaySlice = append(DaySlice, currDate)
 		currDate = currDate.AddDate(0, 0, int(1))
 	}
@@ -159,4 +159,30 @@ func DateBetween2Dates(date, start, end time.Time) bool {
 
 func IsLastDayOfMonth(date time.Time) bool {
 	return date.Day() == EndOfMonth(date).Day()
+}
+
+func GetNearestLeftDate(dates []time.Time, currentDate time.Time) time.Time {
+	var minDiff int64 = -1
+	var minDate time.Time
+
+	for _, date := range dates {
+		if date.Before(currentDate) {
+			diff := currentDate.Unix() - date.Unix()
+			if (minDiff == -1) || (diff < minDiff) {
+				minDiff = diff
+				minDate = date
+			}
+		}
+	}
+	return minDate
+}
+
+func ValidDate(dateStr time.Time) bool {
+	if dateStr.IsZero() {
+		return false
+	}
+	if GetYear(dateStr) == 1970 {
+		return false
+	}
+	return true
 }
