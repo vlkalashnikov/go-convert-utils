@@ -40,3 +40,11 @@ func GetStringValue(mp map[string]interface{}, name string) string {
 	}
 	return ""
 }
+
+func GetBoolValue(mp map[string]interface{}, name string) bool {
+	x := GetMapValue(mp, name)
+	if val, ok := x.(bool); ok {
+		return val
+	}
+	return false
+}
