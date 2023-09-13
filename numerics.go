@@ -1,5 +1,7 @@
 package utils
 
+import "math"
+
 func SameIntSlice(x, y []int) bool {
 	if len(x) != len(y) {
 		return false
@@ -18,4 +20,8 @@ func SameIntSlice(x, y []int) bool {
 		}
 	}
 	return len(diff) == 0
+}
+
+func RoundF64(n float64) float64 {
+	return math.Round(n*100) / 100
 }
