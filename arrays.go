@@ -10,3 +10,15 @@ func ChunckArray[T any](arr []T, chunkSize int) (ret [][]T) {
 	}
 	return
 }
+
+func UniqSlice[T any](s []T, distinctByKey func(obj T) interface{}) []T {
+	allKeys := make(map[interface{}]bool)
+	var result []T
+	for _, item := range s {
+		if _, value := allKeys[distinctByKey(item)]; !value {
+			allKeys[distinctByKey(item)] = true
+			result = append(result, item)
+		}
+	}
+	return result
+}

@@ -39,3 +39,16 @@ func SameStringSlice(x, y []string) bool {
 	}
 	return len(diff) == 0
 }
+
+func UniqueStrings(in []string) (out []string) {
+	keys := make(map[string]bool)
+	list := []string{}
+
+	for _, entry := range in {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
+}
