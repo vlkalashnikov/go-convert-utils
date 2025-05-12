@@ -48,3 +48,23 @@ func GetBoolValue(mp map[string]interface{}, name string) bool {
 	}
 	return false
 }
+
+func GetFloat64Value(mp map[string]interface{}, name string) float64 {
+	x := GetMapValue(mp, name)
+
+	if val, ok := x.(float64); ok {
+		return val
+	}
+
+	return 0
+}
+
+func GetFloat32Value(mp map[string]interface{}, name string) float32 {
+	x := GetMapValue(mp, name)
+
+	if val, ok := x.(float32); ok {
+		return val
+	}
+
+	return 0
+}
