@@ -96,6 +96,10 @@ func P2B(p *bool) bool {
 }
 
 func B2F64(bytes []byte) float64 {
+	if len(bytes) < 8 {
+		return 0
+	}
+
 	bits := binary.LittleEndian.Uint64(bytes)
 	float := math.Float64frombits(bits)
 	return float
@@ -170,6 +174,10 @@ func DefaultInt64(value int64, defaultValue ...int64) int64 {
 }
 
 func RmElemByIdx[T any](slice []T, index int) []T {
+	if index < 0 || index >= len(slice) {
+		return slice
+	}
+
 	return append(slice[:index], slice[index+1:]...)
 }
 
@@ -183,5 +191,19 @@ func Filter[T any](ss []T, fn func(T) bool) (ret []T) {
 }
 
 func FnName(i interface{}) string {
-	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
+	if i == nil {
+		return ""
+	}
+
+	value := reflect.ValueOf(i)
+	if value.Kind() != reflect.Func {
+		return ""
+	}
+
+	fn := runtime.FuncForPC(value.Pointer())
+	if fn == nil {
+		return ""
+	}
+
+	return fn.Name()
 }

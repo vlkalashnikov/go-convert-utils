@@ -161,8 +161,13 @@ func IsLastDayOfMonth(date time.Time) bool {
 	return date.Day() == EndOfMonth(date).Day()
 }
 
-func IsFitstDayOfMonth(date time.Time) bool {
+func IsFirstDayOfMonth(date time.Time) bool {
 	return date.Day() == BeginningOfMonth(date).Day()
+}
+
+// Deprecated: use IsFirstDayOfMonth.
+func IsFitstDayOfMonth(date time.Time) bool {
+	return IsFirstDayOfMonth(date)
 }
 
 func GetNearestLeftDate(dates []time.Time, currentDate time.Time) time.Time {
